@@ -97,14 +97,6 @@ a.title { color: var(--link); }
 .venue em { color: var(--ink); }
 .note { color: var(--warm); font-size: 0.92rem; margin-top: 0.15rem; }
 
-/* teaching */
-.courses { list-style: none; margin: 0; padding: 0; }
-.courses li {
-  display: flex; justify-content: space-between; gap: 1.5rem;
-  padding: 0.4rem 0;
-}
-.when { color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
-
 address { font-style: normal; line-height: 1.7; }
 
 .site-footer { margin-top: 4rem; padding-top: 1.25rem; padding-bottom: 2.5rem; border-top: 1px solid var(--rule); color: var(--muted); font-size: 0.9rem; }
@@ -114,7 +106,6 @@ address { font-style: normal; line-height: 1.7; }
   .intro { grid-template-columns: 1fr; gap: 1.75rem; padding-top: 2.25rem; }
   .portrait { max-width: 12rem; }
   h1 { font-size: 2.1rem; }
-  .courses li { flex-direction: column; gap: 0; }
 }
 
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
