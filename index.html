@@ -105,7 +105,7 @@
       4009 Business Instructional Facility<br>
       515 Gregory Drive<br>
       Champaign, IL 61820<br>
-      <a href="mailto:jsani@illinois.edu">jsani@illinois.edu</a>
+      <a class="email" data-u="jsani" data-d="illinois.edu" href="#contact">jsani [at] illinois [dot] edu</a>
     </address>
   </section>
 
@@ -114,6 +114,14 @@
 <footer class="wrap site-footer">
   <p>© 2026 Jalal Sani</p>
 </footer>
+
+<script>
+document.querySelectorAll("a.email").forEach(function (a) {
+  var addr = a.dataset.u + "@" + a.dataset.d;
+  a.href = "mailto:" + addr;
+  a.textContent = addr;
+});
+</script>
 
 </body>
 </html>
