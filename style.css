@@ -4,7 +4,7 @@
   --muted: #5d6675;
   --rule: #e2ddd3;
   --accent: #13294b;
-  --link: #1f4e8c;
+  --link: #0a58ca;
   --warm: #c8501a;
   --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
   --sans: "Source Sans 3", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
@@ -17,7 +17,7 @@
     --muted: #9aa3b2;
     --rule: #2a313d;
     --accent: #e9ecf2;
-    --link: #8fb8f0;
+    --link: #7fb2ff;
     --warm: #f08a55;
   }
 }
@@ -34,10 +34,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-.wrap { max-width: 54rem; margin: 0 auto; padding: 0 1.5rem; }
+.wrap { max-width: 76rem; margin: 0 auto; padding: 0 2rem; }
 
 a { color: var(--link); text-decoration: none; }
 a:hover { text-decoration: underline; text-underline-offset: 0.18em; }
+main a { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.18em; }
+main a:hover { text-decoration-thickness: 2px; }
 a:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; border-radius: 2px; }
 
 /* header */
@@ -59,7 +61,7 @@ a:focus-visible { outline: 2px solid var(--warm); outline-offset: 3px; border-ra
 
 /* intro */
 .intro {
-  display: grid; grid-template-columns: 15rem 1fr; gap: 2.75rem;
+  display: grid; grid-template-columns: 17rem 1fr; gap: 3rem;
   align-items: start; padding: 3.5rem 0 1rem;
 }
 .portrait { width: 100%; height: auto; border-radius: 4px; display: block; }
@@ -70,7 +72,8 @@ h1 { font: 600 2.6rem/1.1 var(--serif); color: var(--accent); margin: 0 0 1.1rem
   background: var(--accent); color: var(--bg);
   padding: 0.5rem 1rem; border-radius: 3px; font-weight: 600;
 }
-.button:hover { text-decoration: none; opacity: 0.88; }
+main a.button, main a.button:hover { text-decoration: none; }
+.button:hover { opacity: 0.88; }
 
 /* sections */
 section[id] { padding-top: 3.25rem; }
