@@ -27,7 +27,7 @@
 <main class="wrap cv">
   <div class="cv-head">
     <h1>Curriculum Vitae</h1>
-    <a id="cv-file" href="assets/Sani_CV.pdf?v=0a98add8">Download PDF</a>
+    <a id="cv-file" href="assets/Sani_CV.pdf">Download PDF</a>
   </div>
 
   <div id="cv-pages" class="cv-pages" aria-label="Curriculum vitae pages">
@@ -45,7 +45,10 @@
 (function () {
   var holder = document.getElementById("cv-pages");
   var status = document.getElementById("cv-status");
-  var url = document.getElementById("cv-file").getAttribute("href");
+  var link = document.getElementById("cv-file");
+  // a fresh address on every visit, so a saved old copy of the PDF is never shown
+  var url = link.getAttribute("href") + "?t=" + Date.now();
+  link.setAttribute("href", url);
 
   function fail() {
     status.innerHTML = 'The CV could not be shown here. <a href="' + url + '">Open it as a PDF</a>.';
