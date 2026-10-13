@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CV | Jalal Sani</title>
+  <meta name="description" content="Curriculum vitae of Jalal Sani, Assistant Professor of Accounting at the Gies College of Business, University of Illinois at Urbana-Champaign.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%2313294b'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='30' fill='%23fff' text-anchor='middle'%3EJS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="site-name" href="index.html">Jalal Sani</a>
+    <nav aria-label="Sections">
+      <a href="index.html#research">Research</a>
+      <a href="cv.html" aria-current="page">CV</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap cv">
+  <div class="cv-head">
+    <h1>Curriculum Vitae</h1>
+    <a id="cv-file" href="assets/Sani_CV.pdf?v=b3ba70f4">Download PDF</a>
+  </div>
+
+  <div id="cv-pages" class="cv-pages" aria-label="Curriculum vitae pages">
+    <p id="cv-status">Loading CV…</p>
+  </div>
+  <noscript><p><a href="assets/Sani_CV.pdf">Open the CV as a PDF</a></p></noscript>
+</main>
+
+<footer class="wrap site-footer">
+  <p>© 2026 Jalal Sani</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function () {
+  var holder = document.getElementById("cv-pages");
+  var status = document.getElementById("cv-status");
+  var url = document.getElementById("cv-file").getAttribute("href");
+
+  function fail() {
+    status.innerHTML = 'The CV could not be shown here. <a href="' + url + '">Open it as a PDF</a>.';
+  }
+
+  if (!window.pdfjsLib) { fail(); return; }
+  pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+
+  pdfjsLib.getDocument(url).promise.then(function (pdf) {
+    var ratio = Math.min(window.devicePixelRatio || 1, 2.5);
+    var width = holder.clientWidth;
+    var chain = Promise.resolve();
+    for (var n = 1; n <= pdf.numPages; n++) {
+      (function (num) {
+        chain = chain.then(function () { return pdf.getPage(num); }).then(function (page) {
+          var base = page.getViewport({ scale: 1 });
+          var viewport = page.getViewport({ scale: (width / base.width) * ratio });
+          var canvas = document.createElement("canvas");
+          canvas.width = Math.floor(viewport.width);
+          canvas.height = Math.floor(viewport.height);
+          canvas.setAttribute("role", "img");
+          canvas.setAttribute("aria-label", "CV page " + num + " of " + pdf.numPages);
+          holder.appendChild(canvas);
+          return page.render({ canvasContext: canvas.getContext("2d"), viewport: viewport }).promise;
+        });
+      })(n);
+    }
+    return chain.then(function () { status.remove(); });
+  }).catch(fail);
+})();
+</script>
+
+</body>
+</html>
